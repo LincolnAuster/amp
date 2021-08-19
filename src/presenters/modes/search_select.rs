@@ -9,7 +9,11 @@ use scribe::buffer::Position;
 use crate::view::{Colors, StatusLineData, Style, View};
 use unicode_segmentation::UnicodeSegmentation;
 
-pub fn display<T: Display>(workspace: &mut Workspace, mode: &mut dyn SearchSelectMode<T>, view: &mut View) -> Result<()> {
+pub fn display<T: Display>(
+    workspace: &mut Workspace,
+    mode: &mut dyn SearchSelectMode<T>,
+    view: &mut View
+) -> Result<()> {
     let data;
     let padded_message;
     let mut presenter = view.build_presenter()?;
@@ -42,7 +46,7 @@ pub fn display<T: Display>(workspace: &mut Workspace, mode: &mut dyn SearchSelec
     } else {
         // Draw the list of search results.
         for (line, result) in mode.results().enumerate() {
-            let (content, colors, style) = if line == mode.selected_index() {
+            let (content, colors, style) = if mode.selected_index().contains(&line) {
                 (format!("> {}", result), Colors::Focused, Style::Bold)
             } else {
                 (format!("  {}", result), Colors::Default, Style::Default)

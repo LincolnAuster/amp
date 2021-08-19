@@ -1,42 +1,61 @@
 use std::ops::Deref;
 
+/// Allow selection of *either* an index *or* a custom T.
+pub enum Selection<T> {
+    Index(usize),
+    Custom(T),
+}
+
 /// A simple decorator around a Vec that allows a single element to be selected.
 /// The selection can be incremented/decremented in single steps, and the
 /// selected value wraps when moved beyond either edge of the set.
 pub struct SelectableVec<T> {
     set: Vec<T>,
-    selected_index: usize,
+    selected: Selection<T>,
 }
 
 impl<T> SelectableVec<T> {
     pub fn new(set: Vec<T>) -> SelectableVec<T> {
         SelectableVec {
             set,
-            selected_index: 0,
+            selected: Selection::Index(0),
         }
-    }
-
-    pub fn selected_index(&self) -> usize {
-        self.selected_index
     }
 
     pub fn selection(&self) -> Option<&T> {
-        self.set.get(self.selected_index)
-    }
-
-    pub fn select_previous(&mut self) {
-        if self.selected_index > 0 {
-            self.selected_index -= 1;
-        } else {
-            self.selected_index = self.set.len() - 1;
+        match self.selected {
+            Selection::Index(i) => self.set.get(i),
+            Selection::Custom(ref t) => Some(t),
         }
     }
 
+    pub fn selected_index(&self) -> Option<usize> {
+        match self.selected {
+            Selection::Index(i) => Some(i),
+            _ => None,
+        }
+    }
+
+    /// Select the previous item, so long as one exists. Note that this is a
+    /// noop if the selection is custom.
+    pub fn select_previous(&mut self) {
+        if let Selection::Index(i) = &mut self.selected {
+            if *i > 0 {
+                *i -= 1;
+            } else {
+                *i = self.set.len() - 1;
+            }
+        }
+    }
+
+    /// Select the previous item - noop if the item is custom.
     pub fn select_next(&mut self) {
-        if self.selected_index < self.set.len() - 1 {
-            self.selected_index += 1;
-        } else {
-            self.selected_index = 0;
+        if let Selection::Index(i) = &mut self.selected {
+            if *i < self.set.len() - 1 {
+                *i += 1;
+            } else {
+                *i = 0;
+            }
         }
     }
 }

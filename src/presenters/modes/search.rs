@@ -24,7 +24,10 @@ pub fn display(workspace: &mut Workspace, mode: &SearchMode, view: &mut View) ->
         if results.len() == 1 {
             String::from("1 match")
         } else {
-            format!("{} of {} matches", results.selected_index() + 1, results.len())
+            format!(
+                "{} of {} matches",
+                results.selected_index().unwrap() + 1, results.len()
+            )
         }
     } else {
         String::new()

@@ -1,5 +1,7 @@
 // `error_chain!` can recurse deeply
 #![recursion_limit = "1024"]
+// Allows the use of one method to compare between Options and the wrapped val
+#![feature(option_result_contains)]
 
 // External dependencies
 extern crate app_dirs;

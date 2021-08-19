@@ -97,7 +97,7 @@ impl SearchSelectMode<Symbol> for SymbolJumpMode {
         self.results.selection()
     }
 
-    fn selected_index(&self) -> usize {
+    fn selected_index(&self) -> Option<usize> {
         self.results.selected_index()
     }
 
