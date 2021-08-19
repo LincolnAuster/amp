@@ -28,7 +28,12 @@ pub struct OpenMode {
 }
 
 impl OpenMode {
-    pub fn new(path: PathBuf, exclusions: Option<Vec<ExclusionPattern>>, events: Sender<Event>, config: SearchSelectConfig) -> OpenMode {
+    pub fn new(
+        path: PathBuf,
+        exclusions: Option<Vec<ExclusionPattern>>,
+        events: Sender<Event>,
+        config: SearchSelectConfig
+    ) -> OpenMode {
         // Build and populate the index in a separate thread.
         let index_path = path.clone();
         thread::spawn(move || {
