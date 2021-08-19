@@ -13,7 +13,11 @@ pub struct EventListener {
 impl EventListener {
     /// Spins up a thread that loops forever, waiting on terminal events
     /// and forwarding those to the application event channel.
-    pub fn start(terminal: Arc<Box<dyn Terminal + Sync + Send + 'static>>, events: Sender<Event>, killswitch: Receiver<()>) {
+    pub fn start(
+        terminal: Arc<Box<dyn Terminal + Sync + Send + 'static>>,
+        events: Sender<Event>,
+        killswitch: Receiver<()>
+    ) {
         thread::spawn(move || {
             EventListener { terminal, events, killswitch }.listen();
         });
