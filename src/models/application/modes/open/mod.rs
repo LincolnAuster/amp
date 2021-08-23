@@ -56,6 +56,27 @@ impl OpenMode {
     pub fn set_index(&mut self, index: Index) {
         self.index = OpenModeIndex::Complete(index)
     }
+
+    fn paths(&self) -> SelectableVec<DisplayablePath> {
+        if let OpenModeIndex::Complete(ref idx) = self.index {
+            let results: Vec<DisplayablePath> = idx.find(
+                    &self.input.to_lowercase(),
+                    self.config.max_results,
+                ).into_iter()
+                .map(|path| DisplayablePath(path.to_path_buf()))
+                .collect();
+
+            if results.len() == 0 {
+                SelectableVec::new_custom(
+                    DisplayablePath(PathBuf::from(self.input.clone()))
+                )
+            } else {
+                SelectableVec::new(results)
+            }
+        } else {
+            SelectableVec::new(vec![])
+        }
+    }
 }
 
 impl fmt::Display for OpenMode {
@@ -66,19 +87,7 @@ impl fmt::Display for OpenMode {
 
 impl SearchSelectMode<DisplayablePath> for OpenMode {
     fn search(&mut self) {
-        let results =
-            if let OpenModeIndex::Complete(ref index) = self.index {
-                index.find(
-                    &self.input.to_lowercase(),
-                    self.config.max_results
-                ).into_iter()
-                .map(|path| DisplayablePath(path.to_path_buf()))
-                .collect()
-            } else {
-                vec![]
-            };
-
-        self.results = SelectableVec::new(results);
+        self.results = self.paths();
     }
 
     fn query(&mut self) -> &mut String {

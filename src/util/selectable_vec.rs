@@ -22,6 +22,13 @@ impl<T> SelectableVec<T> {
         }
     }
 
+    pub fn new_custom(val: T) -> SelectableVec<T> {
+        SelectableVec {
+            set: Vec::new(),
+            selected: Selection::Custom(val),
+        }
+    }
+
     pub fn selection(&self) -> Option<&T> {
         match self.selected {
             Selection::Index(i) => self.set.get(i),
