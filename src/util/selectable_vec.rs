@@ -58,6 +58,10 @@ impl<T> SelectableVec<T> {
             }
         }
     }
+
+    pub fn select_custom(&mut self, custom: T) {
+        self.selected = Selection::Custom(custom);
+    }
 }
 
 impl<T> Deref for SelectableVec<T> {
