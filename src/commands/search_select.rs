@@ -1,6 +1,7 @@
 use crate::errors::*;
 use crate::commands::{self, application, Result};
 use crate::input::Key;
+use std::fs::OpenOptions;
 use std::mem;
 use crate::models::application::modes::open::DisplayablePath;
 use crate::models::application::{Application, Mode};
@@ -30,7 +31,9 @@ pub fn accept(app: &mut Application) -> Result {
                 });
 
             app.workspace
-                .open_buffer(&path)
+                .open_buffer_with_opts(
+                    &path,
+                    &mut OpenOptions::new().read(true).write(true).create(true))
                 .chain_err(|| "Couldn't open a buffer for the specified path.")?;
 
             let buffer = app.workspace.current_buffer().unwrap();
