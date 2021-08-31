@@ -1,5 +1,21 @@
 [![Build Status](https://travis-ci.org/jmacdonald/amp.svg?branch=master)](https://travis-ci.org/jmacdonald/amp)
 
+# An Amp Fork
+This repo houses a fork of amp with a few small extra features (all of which are
+merged into `all`):
+
++ [`selection::justify`](/lincolnauster/amp/tree/master) command to [reflow
+  text](https://github.com/jmacdonald/amp/issues/219)
+
++ If a non-existant file path is opened, [it's
+  created](/lincolnauster/amp/tree/fcreate).
+
+This all uses a [fork of scribe](/lincolnauster/scribe) with similarly
+incermental additions (at least, until the fork [gets
+merged](https://github.com/jmacdonald/scribe/pull/19)).
+
+---
+
 # Amp: A text editor for your terminal.
 
 Heavily inspired by Vi/Vim. Amp aims to take the core interaction model of Vim,
