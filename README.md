@@ -4,11 +4,11 @@
 This repo houses a fork of amp with a few small extra features (all of which are
 merged into `all`):
 
-+ [`selection::justify`](/lincolnauster/amp/tree/master) command to [reflow
-  text](https://github.com/jmacdonald/amp/issues/219)
++ [`selection::justify`](https://github.com/lincolnauster/amp/tree/master)
+  command to [reflow text](https://github.com/jmacdonald/amp/issues/219)
 
 + If a non-existant file path is opened, [it's
-  created](/lincolnauster/amp/tree/fcreate).
+  created](https://github.com/lincolnauster/amp/tree/fcreate).
 
 This all uses a [fork of scribe](/lincolnauster/scribe) with similarly
 incermental additions (at least, until the fork [gets
