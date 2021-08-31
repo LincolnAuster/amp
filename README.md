@@ -10,9 +10,10 @@ merged into `all`):
 + If a non-existant file path is opened, [it's
   created](https://github.com/lincolnauster/amp/tree/fcreate).
 
++ Adding a trailing newline no longer breaks on weird unicode.
+
 This all uses a [fork of scribe](https://github.com/lincolnauster/scribe) with
-similarly incremental additions (at least, until the fork [gets
-merged](https://github.com/jmacdonald/scribe/pull/19)).
+similarly incremental additions.
 
 ---
 
