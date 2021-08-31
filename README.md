@@ -10,10 +10,9 @@ merged into `all`):
 + If a non-existant file path is opened, [it's
   created](https://github.com/lincolnauster/amp/tree/fcreate).
 
-This all uses a [fork of scribe](/lincolnauster/scribe) with similarly
-incermental additions (at least, until the fork [gets
+This all uses a [fork of scribe](https://github.com/lincolnauster/scribe) with
+similarly incermental additions (at least, until the fork [gets
 merged](https://github.com/jmacdonald/scribe/pull/19)).
-
 ---
 
 # Amp: A text editor for your terminal.
