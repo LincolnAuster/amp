@@ -4,33 +4,13 @@ use super::application;
 use crate::errors::*;
 use crate::commands::{self, Result};
 use crate::util;
+use crate::util::reflow::Reflow;
 
 pub fn delete(app: &mut Application) -> Result {
-    if let Some(buffer) = app.workspace.current_buffer() {
-        match app.mode {
-            Mode::Select(ref select_mode) => {
-                let cursor_position = *buffer.cursor.clone();
-                let delete_range = Range::new(cursor_position, select_mode.anchor);
-                buffer.delete_range(delete_range.clone());
-                buffer.cursor.move_to(delete_range.start());
-            }
-            Mode::SelectLine(ref mode) => {
-                let delete_range = mode.to_range(&*buffer.cursor);
-                buffer.delete_range(delete_range.clone());
-                buffer.cursor.move_to(delete_range.start());
-            }
-            Mode::Search(ref mode) => {
-                let selection = mode.results
-                    .as_ref()
-                    .and_then(|r| r.selection())
-                    .ok_or("Can't delete in search mode without a selected result")?;
-                buffer.delete_range(selection.clone());
-            }
-            _ => bail!("Can't delete selections outside of select mode"),
-        };
-    } else {
-        bail!(BUFFER_MISSING);
-    }
+    let rng = sel_to_range(app)?;
+    let buf = app.workspace.current_buffer().unwrap();
+    buf.delete_range(rng.clone());
+    buf.cursor.move_to(rng.start());
 
     Ok(())
 }
@@ -98,6 +78,52 @@ fn copy_to_clipboard(app: &mut Application) -> Result {
     };
 
     Ok(())
+}
+
+pub fn justify(app: &mut Application) -> Result {
+    let rng = sel_to_range(app)?;
+    let mut buf = app.workspace.current_buffer().unwrap();
+
+    let tar = match app.preferences.borrow().line_length_guide() {
+    	Some(n) => n,
+    	None => bail!("Justification requires a line_length_guide."),
+    };
+
+    let rfl = Reflow::new(&mut buf, rng, tar)?;
+    rfl.apply()?;
+
+    Ok(())
+}
+
+fn sel_to_range(app: &mut Application) -> std::result::Result<Range, Error> {
+    let buf = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+
+    match app.mode {
+	Mode::Select(ref sel) => {
+	    let cursor_position = *buf.cursor.clone();
+	    Ok(Range::new(cursor_position, sel.anchor))
+	},
+	Mode::SelectLine(ref sel) => {
+	    Ok(util::inclusive_range(
+    		&LineRange::new(
+    		    sel.anchor,
+    		    buf.cursor.line
+    		),
+		buf
+	    ))
+	},
+	Mode::Search(ref search) => {
+	    Ok(search
+		.results
+		.as_ref()
+		.and_then(|r| r.selection())
+		.ok_or("A selection is required.")
+		.unwrap()
+	        .clone()
+	     )
+	}
+	_ => bail!("A selection is required."),
+    }
 }
 
 #[cfg(test)]
