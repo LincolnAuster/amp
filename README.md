@@ -11,7 +11,7 @@ merged into `all`):
   created](https://github.com/lincolnauster/amp/tree/fcreate).
 
 This all uses a [fork of scribe](https://github.com/lincolnauster/scribe) with
-similarly incermental additions (at least, until the fork [gets
+similarly incremental additions (at least, until the fork [gets
 merged](https://github.com/jmacdonald/scribe/pull/19)).
 
 ---
