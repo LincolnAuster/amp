@@ -12,6 +12,8 @@ merged into `all`):
 
 + Adding a trailing newline no longer breaks on weird unicode.
 
++ Don't depend on the [`pad`](https://github.com/ogham/rust-pad) crate.
+
 This all uses a [fork of scribe](https://github.com/lincolnauster/scribe) with
 similarly incremental additions.
 

@@ -2,7 +2,6 @@ use crate::errors::*;
 use std::cmp;
 use std::fmt::Display;
 use crate::models::application::modes::{SearchSelectMode};
-use pad::PadStr;
 use crate::presenters::current_buffer_status_line_data;
 use scribe::Workspace;
 use scribe::buffer::Position;
@@ -38,7 +37,7 @@ pub fn display<T: Display>(
     }
 
     if let Some(message) = mode.message() {
-        padded_message = message.pad_to_width(presenter.width());
+        padded_message = format!("{:width$}", message, width=presenter.width());
         presenter.print(&Position{ line: 0, offset: 0 },
                    Style::Default,
                    Colors::Default,
@@ -55,7 +54,7 @@ pub fn display<T: Display>(
                 Position{ line, offset: 0 },
                 style,
                 colors,
-                content.pad_to_width(presenter.width())
+                format!("{:width$}", content, width=presenter.width()),
             ));
         }
 
@@ -70,9 +69,10 @@ pub fn display<T: Display>(
            Position{ line, offset: 0 },
            Style::Default,
            Colors::Default,
-           String::new().pad_to_width(presenter.width())
+           format!("{:width$}", ' ', width=presenter.width()),
         ));
     }
+
     for (position, style, colors, content) in remaining_lines.iter() {
         presenter.print(position, *style, *colors, content);
     }
@@ -84,7 +84,9 @@ pub fn display<T: Display>(
     } else {
         Colors::Inverted
     };
-    let padded_content = mode.query().pad_to_width(presenter.width());
+
+    let padded_content = format!("{:width$}", mode.query(), width=presenter.width());
+
     presenter.print(&Position{ line, offset: 0 },
                Style::Bold,
                colors,
