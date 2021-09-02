@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/jmacdonald/amp.svg?branch=master)](https://travis-ci.org/jmacdonald/amp)
 
-# An Amp Fork
+# Amp: A Fork
 This repo houses a fork of amp with a few small extra features (all of which are
 merged into `all`):
 
