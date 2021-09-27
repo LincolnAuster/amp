@@ -1,21 +1,20 @@
-[![Build Status](https://travis-ci.org/jmacdonald/amp.svg?branch=master)](https://travis-ci.org/jmacdonald/amp)
-
 # Amp: A Fork
-This repo houses a fork of amp with a few small extra features:
+This repo houses a fork of amp with a few small extra features (chekced are
+merged into jmacdonald's main):
 
-+ [`selection::justify`](https://github.com/lincolnauster/amp/tree/master)
++ [x] [`selection::justify`](https://github.com/lincolnauster/amp/tree/master)
   command to [reflow text](https://github.com/jmacdonald/amp/issues/219)
 
-+ If a non-existant file path is opened, [it's
++ [ ] If a non-existant file path is opened, [it's
   created](https://github.com/lincolnauster/amp/tree/fcreate).
 
 Some fixes:
 
-+ Adding a trailing newline no longer breaks on weird unicode.
++ [x] Adding a trailing newline no longer breaks on weird unicode.
 
 And some internal stuff:
 
-+ Don't depend on the [`pad`](https://github.com/ogham/rust-pad) crate.
++ [ ] Don't depend on the [`pad`](https://github.com/ogham/rust-pad) crate.
 
 This all uses a [fork of scribe](https://github.com/lincolnauster/scribe) with
 similarly incremental additions.
