@@ -11,19 +11,26 @@ fn path_as_title(path: &Path) -> String {
 }
 
 fn current_buffer_status_line_data(workspace: &mut Workspace) -> StatusLineData {
-    let modified = workspace.current_buffer().map(|b| b.modified()).unwrap_or(false);
+    let buffer = workspace.current_buffer();
+    let modified = buffer.as_ref().map(|b| b.modified()).unwrap_or(false);
+
+    let line_perc = buffer.map(|b| {
+        let line_total = b.line_count();
+        let line_at = b.cursor.position.line + 1;
+        let line_perc = (line_at * 100) / line_total;
+        format!("[{:2}%]", line_perc)
+    }).unwrap_or(String::new());
 
     let (content, style) = workspace.current_buffer_path().map(|path| {
-        // Determine buffer title styles based on its modification status.
-        if modified {
-            // Use an emboldened path with an asterisk.
-            let mut title = path_as_title(path);
-            title.push('*');
+        let mut title = path_as_title(path);
+        let mut style = Style::Default;
 
-            (title, Style::Bold)
-        } else {
-            (path_as_title(path), Style::Default)
+        if modified {
+            title.push('*');
+            style = Style::Bold;
         }
+
+        (format!(" {}{}", line_perc, title), style)
     }).unwrap_or((String::new(), Style::Default));
 
     StatusLineData {
