@@ -10,6 +10,8 @@ merged into jmacdonald's main):
 
 + [ ] line_length_guide can be configured differently for different file types
 
++ [ ] Percentage through the file is displayed in the modeline.
+
 Some fixes:
 
 + [x] Adding a trailing newline no longer breaks on weird unicode.
