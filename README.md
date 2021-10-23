@@ -8,6 +8,8 @@ merged into jmacdonald's main):
 + [ ] If a non-existant file path is opened, [it's
   created](https://github.com/lincolnauster/amp/tree/fcreate).
 
++ [ ] line_length_guide can be configured differently for different file types
+
 Some fixes:
 
 + [x] Adding a trailing newline no longer breaks on weird unicode.
