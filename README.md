@@ -1,11 +1,11 @@
 # Amp: A Fork
-This repo houses a fork of amp with a few small extra features (chekced are
+This repo houses a fork of amp with a few small extra features (checked are
 merged into jmacdonald's main):
 
 + [x] [`selection::justify`](https://github.com/lincolnauster/amp/tree/master)
   command to [reflow text](https://github.com/jmacdonald/amp/issues/219)
 
-+ [ ] If a non-existant file path is opened, [it's
++ [ ] If a non-existent file path is opened, [it's
   created](https://github.com/lincolnauster/amp/tree/fcreate).
 
 + [ ] line_length_guide can be configured differently for different file types
