@@ -1,11 +1,17 @@
 use super::*;
 
+pub struct Indent<'a> {
+    pub text: &'a str,
+    pub len: usize,
+}
+
 /// Encapsulate reflow logic for buffer manipulation.
 pub struct Reflow<'a> {
     buf: &'a mut Buffer,
     range: Range,
-    text: String,
     limit: usize,
+    text: String,
+    indent: Indent<'a>,
 }
 
 impl<'a> Reflow<'a> {
@@ -15,7 +21,17 @@ impl<'a> Reflow<'a> {
         buf: &'a mut Buffer, range: Range, limit: usize
     ) -> std::result::Result<Self, Error> {
         let text = buf.read(&range).ok_or("Selection is invalid.")?;
-        Ok(Self { buf, range, text, limit })
+        Ok(Self { buf, range, text, limit, indent: Indent::empty() })
+    }
+
+    pub fn with_indent(self, indent: Indent<'a>) -> Self {
+        Self {
+            buf: self.buf,
+            range: self.range,
+            limit: self.limit,
+            text: self.text,
+            indent: indent,
+        }
     }
 
     pub fn apply(mut self) -> std::result::Result<(), Error> {
@@ -47,6 +63,11 @@ impl<'a> Reflow<'a> {
         let mut pars = text.split("\n\n").peekable();
 
         let mut space_delims = ["".to_string(), " ".to_string(), "\n".to_string()];
+
+        limit -= self.indent.len;
+        space_delims[0] += self.indent.text;
+        space_delims[2] += self.indent.text;
+
         if prefix != "" {
         	space_delims[0] += prefix;
         	space_delims[0] += " ";
@@ -62,7 +83,7 @@ impl<'a> Reflow<'a> {
 
         	while let Some(word) = words.next() {
         	    if word == prefix {
-        		continue;
+            		continue;
         	    }
 
         	    len += word.len();
@@ -87,6 +108,12 @@ impl<'a> Reflow<'a> {
         }
 
         justified
+    }
+}
+
+impl<'a> Indent<'a> {
+    pub fn empty() -> Self {
+        Self { text: "", len: 0 }
     }
 }
 
@@ -233,6 +260,31 @@ languages.\n"
 // filler text meant to do stuff and things that end up with text nicely
 // wrappped around a comment delimiter such as the double slashes in c-style
 // languages.",
+    	);
+    }
+
+    #[test]
+    fn justify_indented() {
+        let mut buf = Buffer::new();
+    	buf.insert("\
+# a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a\n"
+        );
+
+        Reflow::new(
+            &mut buf,
+            Range::new(
+                scribe::buffer::Position { line: 0, offset: 0 },
+                scribe::buffer::Position { line: 1, offset: 0 },
+            ),
+            80,
+        ).unwrap().with_indent(Indent {
+            text: "    ",
+            len: 4,
+        }).apply().unwrap();
+
+    	assert_eq!(
+    	    buf.data(), "    # a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
+    # a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a"
     	);
     }
 }
