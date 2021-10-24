@@ -4,7 +4,7 @@ use super::application;
 use crate::errors::*;
 use crate::commands::{self, Result};
 use crate::util;
-use crate::util::reflow::Reflow;
+use crate::util::reflow;
 
 pub fn delete(app: &mut Application) -> Result {
     let rng = sel_to_range(app)?;
@@ -83,13 +83,31 @@ fn copy_to_clipboard(app: &mut Application) -> Result {
 pub fn justify(app: &mut Application) -> Result {
     let range = sel_to_range(app)?;
     let mut buffer = app.workspace.current_buffer().unwrap();
+    let indent = util::identify_indent(buffer, range.start());
+    let path = buffer.path.as_ref().clone();
+    let tab_width = app.preferences.borrow().tab_width(path);
 
-    let limit = match app.preferences.borrow().line_length_guide(buffer.path.as_ref()) {
-    	Some(n) => n,
-    	None => bail!("Justification requires a line_length_guide."),
-    };
+    let limit = app.preferences.borrow().line_length_guide(path).ok_or(
+        "Justification requires a line_length_guide."
+    )?;
 
-    Reflow::new(&mut buffer, range, limit)?.apply()?;
+    reflow::Reflow::new(&mut buffer, range, limit)?.with_indent(
+        reflow::Indent {
+            text: &indent,
+            // we need to do some trickery here to account for the fact that
+            // tabs are a variable length, as dependent on `app`.
+            //
+            // FIXME: some unicode characters are also variable lengths. How do
+            // we account for that?
+            len: indent.chars().fold(0, |len, x| {
+                if x == '\t' {
+                    len + tab_width
+                } else {
+                    len + 1
+                }
+            }),
+        }
+    ).apply()?;
 
     Ok(())
 }
