@@ -58,6 +58,16 @@ pub fn add_buffer(buffer: Buffer, app: &mut Application) -> Result<()> {
     Ok(())
 }
 
+pub fn identify_indent(buffer: &Buffer, position: Position) -> String {
+    let data = buffer.data();
+    let lines = data.lines().take(position.line + 1).collect::<Vec<&str>>();
+    let indent_line = lines.iter().rev().find(|line| !line.is_empty());
+
+    indent_line.map(|x| {
+        x.chars().take_while(|&c| c.is_whitespace()).collect()
+    }).unwrap_or(String::new())
+}
+
 #[cfg(test)]
 mod tests {
     use scribe::Buffer;

@@ -307,16 +307,9 @@ pub fn display_current_scope(app: &mut Application) -> Result {
 pub fn insert_newline(app: &mut Application) -> Result {
     let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
     let position = buffer.cursor.clone();
-    let data = buffer.data();
-    let lines = data.lines().take(position.line + 1).collect::<Vec<&str>>();
-
-    let indent_line = lines.iter().rev().find(|line| !line.is_empty());
-    let indent = indent_line.map(|x| {
-        x.chars().take_while(|&c| c.is_whitespace()).collect()
-    }).unwrap_or(String::new());
+    let indent = util::identify_indent(buffer, *position);
 
     buffer.insert(format!("\n{}", indent));
-
     buffer.cursor.move_down();
     buffer.cursor.move_to(Position {
         line: position.line + 1,
