@@ -5,6 +5,8 @@ merged into jmacdonald's main):
 + [x] [`selection::justify`](https://github.com/lincolnauster/amp/tree/master)
   command to [reflow text](https://github.com/jmacdonald/amp/issues/219)
 
+- [ ] `selection::justify` transaparently handles indents.
+
 + [ ] If a non-existent file path is opened, [it's
   created](https://github.com/lincolnauster/amp/tree/fcreate).
 
