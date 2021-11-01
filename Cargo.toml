@@ -17,7 +17,7 @@ regex = "1.3.4"
 
 [dependencies]
 app_dirs = "1.2.1"
-scribe = { git = "https://github.com/lincolnauster/scribe", rev = "a62fe45e608f4aea1b171c54410e4c2fbf26f5d7" }
+scribe = { git = "https://github.com/lincolnauster/scribe", rev = "9ec9d11061e2a2a08e283aefbc27d51d71cd983f" }
 bloodhound = "0.5.4"
 luthor = "0.1.7"
 fragment = "0.3.1"

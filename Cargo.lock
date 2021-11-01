@@ -1064,7 +1064,7 @@ checksum = "d29ab0c6d3fc0ee92fe66e2d99f700eab17a8d57d1c1d3b748380fb20baa78cd"
 [[package]]
 name = "scribe"
 version = "0.7.2"
-source = "git+https://github.com/lincolnauster/scribe?rev=a62fe45e608f4aea1b171c54410e4c2fbf26f5d7#a62fe45e608f4aea1b171c54410e4c2fbf26f5d7"
+source = "git+https://github.com/lincolnauster/scribe?rev=9ec9d11061e2a2a08e283aefbc27d51d71cd983f#9ec9d11061e2a2a08e283aefbc27d51d71cd983f"
 dependencies = [
  "error-chain 0.10.0",
  "luthor",
@@ -1438,7 +1438,7 @@ dependencies = [
 [[package]]
 name = "yaml-rust"
 version = "0.4.5"
-source = "git+https://github.com/lincolnauster/yaml-rust?branch=all#8af806dfd77d6353bffe232ee1ab0c177b533c2b"
+source = "git+https://github.com/lincolnauster/yaml-rust?branch=all#19833b4d5bdc233e3aee682135be055506c41d62"
 dependencies = [
  "linked-hash-map",
 ]
