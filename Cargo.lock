@@ -1064,7 +1064,7 @@ checksum = "d29ab0c6d3fc0ee92fe66e2d99f700eab17a8d57d1c1d3b748380fb20baa78cd"
 [[package]]
 name = "scribe"
 version = "0.7.2"
-source = "git+https://github.com/lincolnauster/scribe#90e19be8ba48cc2c1389d9eca1a5171d55d63dc7"
+source = "git+https://github.com/lincolnauster/scribe?rev=a62fe45e608f4aea1b171c54410e4c2fbf26f5d7#a62fe45e608f4aea1b171c54410e4c2fbf26f5d7"
 dependencies = [
  "error-chain 0.10.0",
  "luthor",
