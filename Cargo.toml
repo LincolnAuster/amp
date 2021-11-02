@@ -33,7 +33,7 @@ lazy_static = "1.2.0"
 mio = "0.6"
 linked-hash-map = "0.5.4"
 
-yaml-rust = { git = "https://github.com/lincolnauster/yaml-rust", branch = "all" }
+yaml_rust_fork = { git = "https://github.com/lincolnauster/yaml-rust", branch = "all", package = "yaml-rust" }
 
 [dependencies.signal-hook]
 version = "0.1.9"
