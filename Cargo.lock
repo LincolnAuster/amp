@@ -487,9 +487,9 @@ dependencies = [
 
 [[package]]
 name = "gimli"
-version = "0.26.0"
+version = "0.26.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "81a03ce013ffccead76c11a15751231f777d9295b845cc1266ed4d34fcbd7977"
+checksum = "78cc372d058dcf6d5ecd98510e7fbc9e5aec4d21de70f65fea8fecebcd881bd4"
 
 [[package]]
 name = "git2"
@@ -1064,7 +1064,7 @@ checksum = "d29ab0c6d3fc0ee92fe66e2d99f700eab17a8d57d1c1d3b748380fb20baa78cd"
 [[package]]
 name = "scribe"
 version = "0.7.2"
-source = "git+https://github.com/lincolnauster/scribe?rev=9ec9d11061e2a2a08e283aefbc27d51d71cd983f#9ec9d11061e2a2a08e283aefbc27d51d71cd983f"
+source = "git+https://github.com/lincolnauster/scribe?branch=syntect-but-old#9adeff5d742039759cbde851cee39e951a0f4bf0"
 dependencies = [
  "error-chain 0.10.0",
  "luthor",
@@ -1162,8 +1162,7 @@ dependencies = [
 [[package]]
 name = "syntect"
 version = "2.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc8a6f0db88d4afc340522c20d260411e746b2225b257c6b238a75de9d7cec78"
+source = "git+https://github.com/lincolnauster/syntect-but-old?rev=a39123ff6794944b5be6d7d8da88af9cf9794aff#a39123ff6794944b5be6d7d8da88af9cf9794aff"
 dependencies = [
  "bincode",
  "bitflags",
@@ -1177,7 +1176,7 @@ dependencies = [
  "serde_derive",
  "serde_json",
  "walkdir",
- "yaml-rust 0.4.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "yaml-rust 0.4.5 (git+https://github.com/lincolnauster/yaml-rust)",
 ]
 
 [[package]]
@@ -1429,8 +1428,7 @@ dependencies = [
 [[package]]
 name = "yaml-rust"
 version = "0.4.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "56c1936c4cc7a1c9ab21a1ebb602eb942ba868cbd44a99cb7cdc5892335e1c85"
+source = "git+https://github.com/lincolnauster/yaml-rust?branch=all#19833b4d5bdc233e3aee682135be055506c41d62"
 dependencies = [
  "linked-hash-map",
 ]
@@ -1438,7 +1436,7 @@ dependencies = [
 [[package]]
 name = "yaml-rust"
 version = "0.4.5"
-source = "git+https://github.com/lincolnauster/yaml-rust?branch=all#19833b4d5bdc233e3aee682135be055506c41d62"
+source = "git+https://github.com/lincolnauster/yaml-rust#19833b4d5bdc233e3aee682135be055506c41d62"
 dependencies = [
  "linked-hash-map",
 ]
