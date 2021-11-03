@@ -18,12 +18,18 @@ Some fixes:
 
 + [x] Adding a trailing newline no longer breaks on weird unicode.
 
-And some internal stuff:
+Some internal stuff:
 
 + [ ] Don't depend on the [`pad`](https://github.com/ogham/rust-pad) crate.
 
 This all uses a [fork of scribe](https://github.com/lincolnauster/scribe) with
 similarly incremental additions.
+
+And some unstable hacks:
+
++ [ ] Nix flake packaging (unchecked not because I'm looking to merge but
+     because I need to remind myself that most of what I did for this is, indeed,
+     a very ugly hack).
 
 ---
 
