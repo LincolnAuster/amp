@@ -59,7 +59,7 @@ dependencies = [
  "syntect",
  "termion",
  "unicode-segmentation",
- "yaml-rust 0.4.5 (git+https://github.com/lincolnauster/yaml-rust?branch=all)",
+ "yaml-rust",
 ]
 
 [[package]]
@@ -1064,7 +1064,7 @@ checksum = "d29ab0c6d3fc0ee92fe66e2d99f700eab17a8d57d1c1d3b748380fb20baa78cd"
 [[package]]
 name = "scribe"
 version = "0.7.2"
-source = "git+https://github.com/lincolnauster/scribe?branch=syntect-but-old#9adeff5d742039759cbde851cee39e951a0f4bf0"
+source = "git+https://github.com/lincolnauster/scribe?branch=syntect-but-old#fb05fdf6c43cc73bbf0ad285e4884c96dadb9419"
 dependencies = [
  "error-chain 0.10.0",
  "luthor",
@@ -1162,7 +1162,7 @@ dependencies = [
 [[package]]
 name = "syntect"
 version = "2.1.0"
-source = "git+https://github.com/lincolnauster/syntect-but-old?rev=a39123ff6794944b5be6d7d8da88af9cf9794aff#a39123ff6794944b5be6d7d8da88af9cf9794aff"
+source = "git+https://github.com/lincolnauster/syntect-but-old?branch=old-dep#0ec5358d1422f9dac964456aea1df03b2f91e830"
 dependencies = [
  "bincode",
  "bitflags",
@@ -1176,7 +1176,7 @@ dependencies = [
  "serde_derive",
  "serde_json",
  "walkdir",
- "yaml-rust 0.4.5 (git+https://github.com/lincolnauster/yaml-rust)",
+ "yaml-rust",
 ]
 
 [[package]]
@@ -1423,14 +1423,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3c1cb601d29fe2c2ac60a2b2e5e293994d87a1f6fa9687a31a15270f909be9c2"
 dependencies = [
  "bitflags",
-]
-
-[[package]]
-name = "yaml-rust"
-version = "0.4.5"
-source = "git+https://github.com/lincolnauster/yaml-rust?branch=all#19833b4d5bdc233e3aee682135be055506c41d62"
-dependencies = [
- "linked-hash-map",
 ]
 
 [[package]]

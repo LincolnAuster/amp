@@ -23,7 +23,6 @@ luthor = "0.1.7"
 fragment = "0.3.1"
 regex = "^0.1"
 libc = "0.2.4"
-syntect = { git = "https://github.com/lincolnauster/syntect-but-old", rev = "a39123ff6794944b5be6d7d8da88af9cf9794aff" }
 termion = "1.5.1"
 error-chain = "0.12.4"
 unicode-segmentation = "1.0.1"
@@ -33,7 +32,7 @@ lazy_static = "1.2.0"
 mio = "0.6"
 linked-hash-map = "0.5.4"
 
-yaml_rust_fork = { git = "https://github.com/lincolnauster/yaml-rust", branch = "all", package = "yaml-rust" }
+yaml-rust = { git = "https://github.com/lincolnauster/yaml-rust" }
 
 [dependencies.signal-hook]
 version = "0.1.9"
@@ -52,3 +51,10 @@ criterion = "0.2.0"
 name = "draw_buffer"
 path = "benches/view/draw_buffer.rs"
 harness = false
+
+[dependencies.syntect]
+git = "https://github.com/lincolnauster/syntect-but-old"
+branch = "old-dep"
+version = "~2.1.0"
+default-features = false
+features = ["html", "dump-load", "yaml-load" ]

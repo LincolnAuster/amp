@@ -16,7 +16,7 @@ extern crate signal_hook;
 extern crate syntect;
 extern crate unicode_segmentation;
 extern crate clipboard;
-extern crate yaml_rust_fork as yaml;
+extern crate yaml_rust as yaml;
 extern crate smallvec;
 
 #[macro_use]

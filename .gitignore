@@ -1,7 +1,8 @@
+/result
+/target
 /parts
 /prime
 /snap/.snapcraft
 /stage
-/target
 *.snap
 *.swp
