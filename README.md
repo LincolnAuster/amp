@@ -17,6 +17,7 @@ merged into jmacdonald's main):
 Some fixes:
 
 + [x] Adding a trailing newline no longer breaks on weird unicode.
+- [ ] Text reflowing is treated as a single operation in the undo/redo chain
 
 Some internal stuff:
 
