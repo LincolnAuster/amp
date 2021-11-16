@@ -24,5 +24,13 @@
 
         doCheck = false; # Nix has some ... issues ... with the tests.
       };
+
+      devShell.x86_64-linux = pkgs.mkShell {
+        buildInputs = [
+          pkgs.python3
+          pkgs.xorg.libxcb
+          rust_tc.rustc rust_tc.cargo
+        ];
+      };
     };
 }
