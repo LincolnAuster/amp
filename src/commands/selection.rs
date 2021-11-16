@@ -91,6 +91,7 @@ pub fn justify(app: &mut Application) -> Result {
         "Justification requires a line_length_guide."
     )?;
 
+    buffer.start_operation_group();
     reflow::Reflow::new(&mut buffer, range, limit)?.with_indent(
         reflow::Indent {
             text: &indent,
@@ -108,6 +109,7 @@ pub fn justify(app: &mut Application) -> Result {
             }),
         }
     ).apply()?;
+    buffer.end_operation_group();
 
     Ok(())
 }
