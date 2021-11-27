@@ -91,18 +91,18 @@ impl<'p> Presenter<'p> {
 
         entries.iter().enumerate().fold(0, |offset, (index, element)| {
             let content = match entries.len() {
-                // There's onyl one element; have it fill the line.
+                // There's only one element; have it fill the line.
                 1 => format!(
                     "{:width$}",
                     element.content,
-                    width=self.view.terminal.width(),
+                    width = self.view.terminal.width(),
                 ),
 
                 // Expand the last element to fill the remaining width.
                 2 if index == entries.len() - 1 => format!(
                     "{:width$}",
                     element.content,
-                    width=self.view.terminal.width().saturating_sub(offset),
+                    width = self.view.terminal.width().saturating_sub(offset),
                 ),
                 2 => element.content.clone(),
 
@@ -111,7 +111,7 @@ impl<'p> Presenter<'p> {
                     format!(
                         "{:width$}",
                         element.content,
-                        width=self.view.terminal.width().saturating_sub(space),
+                        width = self.view.terminal.width().saturating_sub(space),
                     )
                 },
                 _ => element.content.clone(),

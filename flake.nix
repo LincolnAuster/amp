@@ -17,7 +17,7 @@
         version = "0.6.2-p";
         src = ./.;
 
-        cargoSha256 = "sha256-7W/u6tbo1ovUYbqYPpGAQ/pmiPPfRxdoDuqENnE37Kw=";
+        cargoSha256 = "sha256-BBEbQZxzldkzWiaGeViH/Bt02pJ3pRT2UKEgcC9FAPY=";
 
         nativeBuildInputs = [ pkgs.python3 ];
         buildInputs = [ pkgs.xorg.libxcb ];

@@ -37,7 +37,7 @@ pub fn display<T: Display>(
     }
 
     if let Some(message) = mode.message() {
-        padded_message = format!("{:width$}", message, width=presenter.width());
+        padded_message = format!("{:width$}", message, width = presenter.width());
         presenter.print(&Position{ line: 0, offset: 0 },
                    Style::Default,
                    Colors::Default,
@@ -54,7 +54,7 @@ pub fn display<T: Display>(
                 Position{ line, offset: 0 },
                 style,
                 colors,
-                format!("{:width$}", content, width=presenter.width()),
+                format!("{:width$}", content, width = presenter.width()),
             ));
         }
 
@@ -69,7 +69,7 @@ pub fn display<T: Display>(
            Position{ line, offset: 0 },
            Style::Default,
            Colors::Default,
-           format!("{:width$}", ' ', width=presenter.width()),
+           format!("{:width$}", ' ', width = presenter.width()),
         ));
     }
 
@@ -85,7 +85,7 @@ pub fn display<T: Display>(
         Colors::Inverted
     };
 
-    let padded_content = format!("{:width$}", mode.query(), width=presenter.width());
+    let padded_content = format!("{:width$}", mode.query(), width = presenter.width());
 
     presenter.print(&Position{ line, offset: 0 },
                Style::Bold,
