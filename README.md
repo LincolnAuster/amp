@@ -17,11 +17,11 @@ merged into jmacdonald's main):
 Some fixes:
 
 + [x] Adding a trailing newline no longer breaks on weird unicode.
-- [ ] Text reflowing is treated as a single operation in the undo/redo chain
+- [x] Text reflowing is treated as a single operation in the undo/redo chain
 
 Some internal stuff:
 
-+ [ ] Don't depend on the [`pad`](https://github.com/ogham/rust-pad) crate.
++ [x] Don't depend on the [`pad`](https://github.com/ogham/rust-pad) crate.
 
 And some unstable hacks:
 
