@@ -14,6 +14,8 @@ merged into jmacdonald's main):
 
 + [ ] Percentage through the file is displayed in the modeline.
 
++ [ ] Preferences may be overriden in `--command_line options`.
+
 Some fixes:
 
 + [x] Adding a trailing newline no longer breaks on weird unicode.
